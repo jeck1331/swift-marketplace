@@ -4,7 +4,7 @@
         <TargetFramework>net10.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
-        <RootNamespace>swift_marketplace</RootNamespace>
+        <RootNamespace>SwiftMarketplace.Monolith</RootNamespace>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
 
@@ -16,6 +16,16 @@
       <Content Include="..\.dockerignore">
         <Link>.dockerignore</Link>
       </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Features\Identity\Endpoints\" />
+      <Folder Include="Features\Identity\Models\" />
+      <Folder Include="Features\Identity\Services\" />
+      <Folder Include="Features\Shop\Endpoints\" />
+      <Folder Include="Features\Shop\Models\" />
+      <Folder Include="Features\Shop\Services\" />
+      <Folder Include="Models\DTO\" />
     </ItemGroup>
 
 </Project>
