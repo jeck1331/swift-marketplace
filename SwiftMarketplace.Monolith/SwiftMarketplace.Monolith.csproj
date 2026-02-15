@@ -10,6 +10,10 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.3"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.3">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
     </ItemGroup>
 
     <ItemGroup>
@@ -22,10 +26,15 @@
       <Folder Include="Features\Identity\Endpoints\" />
       <Folder Include="Features\Identity\Models\" />
       <Folder Include="Features\Identity\Services\" />
-      <Folder Include="Features\Shop\Endpoints\" />
-      <Folder Include="Features\Shop\Models\" />
-      <Folder Include="Features\Shop\Services\" />
+      <Folder Include="Features\Catalog\Endpoints\" />
+      <Folder Include="Features\Catalog\Models\" />
+      <Folder Include="Features\Catalog\Services\" />
       <Folder Include="Models\DTO\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\SwiftMarketplace.Common\SwiftMarketplace.Common.csproj" />
+      <ProjectReference Include="..\SwiftMarketplace.DAL\SwiftMarketplace.DAL.csproj" />
     </ItemGroup>
 
 </Project>
