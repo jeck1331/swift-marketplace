@@ -1,0 +1,21 @@
+﻿{
+  "realm": "swift-marketplace-ecom",
+  "enabled": true,
+  "clients": [
+    {
+      "clientId": "swift-marketplace-ecom-api",
+      "enabled": true,
+      "publicClient": true,
+      "directAccessGrantsEnabled": true,
+      "standardFlowEnabled": false
+    }
+  ],
+  "users": [
+    {
+      "username": "alice",
+      "enabled": true,
+      "emailVerified": true,
+      "credentials": [{ "type": "password", "value": "password", "temporary": false }]
+    }
+  ]
+}

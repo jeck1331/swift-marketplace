@@ -1,7 +1,0 @@
-﻿services:
-  swift-marketplace:
-    image: swift-marketplace
-    build:
-      context: .
-      dockerfile: swift-marketplace/Dockerfile
-
