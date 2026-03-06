@@ -73,12 +73,4 @@ app.MapGet("/api/me", (ClaimsPrincipal user) =>
     });
 }).RequireAuthorization();
 
-// if (app.Environment.IsDevelopment())
-// {
-//     app.MapOpenApi();
-// }
-//
-// app.UseHttpsRedirection();
-
-
 app.Run();
