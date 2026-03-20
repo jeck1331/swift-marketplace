@@ -2,9 +2,9 @@
   postgres:
     image: postgres:18
     environment:
-      POSTGRES_USER: app
-      POSTGRES_PASSWORD: app
-      POSTGRES_DB: app
+      POSTGRES_USER: marketplace
+      POSTGRES_PASSWORD: marketplace_pwd
+      POSTGRES_DB: identity_db
     ports:
       - "5433:5432"
     volumes:
@@ -61,18 +61,18 @@
     environment:
       KAFKA_CLUSTERS_0_NAME: local
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
-
-  keycloak:
-    image: quay.io/keycloak/keycloak:26.5.4
-    command: ["start-dev", "--import-realm"]
+      
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:9.3.2
     environment:
-      KEYCLOAK_ADMIN: admin
-      KEYCLOAK_ADMIN_PASSWORD: admin
+      - discovery.type=single-node
+      - xpack.security.enabled=false
     ports:
-      - "8080:8080"
+      - "9200:9200"
     volumes:
-      - ./keycloak:/opt/keycloak/data/import
+      - es_data:/usr/share/elasticsearch/data
 
 volumes:
     pg_data:
     kafka_data:
+    es_data:

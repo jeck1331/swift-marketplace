@@ -1,8 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatalogService.API", "CatalogService\CatalogService.API\CatalogService.API.csproj", "{758A6B59-79B2-4CD5-B5E9-BCB707BE88BD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityService.Application", "Identity\IdentityService.Application\IdentityService.Application.csproj", "{2D3946AD-F009-4FBE-B281-64D8B0303105}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatalogService.Migrations", "CatalogService\CatalogService.Migrations\CatalogService.Migrations.csproj", "{E7558DFE-CED7-44EE-8F6E-DF7467D8257C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityService.API", "Identity\IdentityService.API\IdentityService.API.csproj", "{AD93C65D-55F1-484E-BC8D-978CCAC5FEA6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityService.Infrastructure", "Identity\IdentityService.Infrastructure\IdentityService.Infrastructure.csproj", "{9204FC52-76F5-4E60-9EBD-3CD519EFC232}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityService.Domain", "Identity\IdentityService.Domain\IdentityService.Domain.csproj", "{B746200C-46D8-47EB-85FB-3FC3B4FFFBC2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -10,13 +14,21 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{758A6B59-79B2-4CD5-B5E9-BCB707BE88BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{758A6B59-79B2-4CD5-B5E9-BCB707BE88BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{758A6B59-79B2-4CD5-B5E9-BCB707BE88BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{758A6B59-79B2-4CD5-B5E9-BCB707BE88BD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E7558DFE-CED7-44EE-8F6E-DF7467D8257C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E7558DFE-CED7-44EE-8F6E-DF7467D8257C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E7558DFE-CED7-44EE-8F6E-DF7467D8257C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E7558DFE-CED7-44EE-8F6E-DF7467D8257C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D3946AD-F009-4FBE-B281-64D8B0303105}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D3946AD-F009-4FBE-B281-64D8B0303105}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D3946AD-F009-4FBE-B281-64D8B0303105}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D3946AD-F009-4FBE-B281-64D8B0303105}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD93C65D-55F1-484E-BC8D-978CCAC5FEA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD93C65D-55F1-484E-BC8D-978CCAC5FEA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD93C65D-55F1-484E-BC8D-978CCAC5FEA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD93C65D-55F1-484E-BC8D-978CCAC5FEA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9204FC52-76F5-4E60-9EBD-3CD519EFC232}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9204FC52-76F5-4E60-9EBD-3CD519EFC232}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9204FC52-76F5-4E60-9EBD-3CD519EFC232}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9204FC52-76F5-4E60-9EBD-3CD519EFC232}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B746200C-46D8-47EB-85FB-3FC3B4FFFBC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B746200C-46D8-47EB-85FB-3FC3B4FFFBC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B746200C-46D8-47EB-85FB-3FC3B4FFFBC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B746200C-46D8-47EB-85FB-3FC3B4FFFBC2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

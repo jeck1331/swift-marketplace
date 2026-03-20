@@ -1,0 +1,3 @@
+﻿namespace IdentityService.Application.DTO;
+
+public record AuthResponse(string AccessToken, string RefreshToken, DateTime ExpiresAt);
