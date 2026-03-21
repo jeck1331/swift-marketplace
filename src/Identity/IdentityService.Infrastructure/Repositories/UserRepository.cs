@@ -22,7 +22,7 @@ public class UserRepository : IUserRepository
     {
         const string sql = """
                            SELECT id, email, password_hash, first_name, last_name,
-                                  phone, created_at, updated_at
+                                  phone, role, created_at, updated_at
                            FROM users
                            WHERE id = @Id
                            """;
@@ -36,7 +36,7 @@ public class UserRepository : IUserRepository
     {
         const string sql = """
                            SELECT id, email, password_hash, first_name, last_name,
-                                  phone, created_at, updated_at
+                                  phone, role, created_at, updated_at
                            FROM users
                            WHERE email = @Email
                            """;
@@ -49,8 +49,8 @@ public class UserRepository : IUserRepository
     public async Task<Guid> CreateAsync(User user, CancellationToken ct = default)
     {
         const string sql = """
-                           INSERT INTO users (id, email, password_hash, first_name, last_name, phone, created_at)
-                           VALUES (@Id, @Email, @PasswordHash, @FirstName, @LastName, @Phone, @CreatedAt)
+                           INSERT INTO users (id, email, password_hash, first_name, last_name, phone, role, created_at)
+                           VALUES (@Id, @Email, @PasswordHash, @FirstName, @LastName, @Phone, @Role, @CreatedAt)
                            RETURNING id
                            """;
 

@@ -5,11 +5,14 @@ using FluentMigrator.Runner;
 using CatalogService.Infrastructure.Migrations;
 using CatalogService.Infrastructure.Repositories;
 using CatalogService.Infrastructure.Search;
+using Microsoft.OpenApi;
+using Shared.Auth;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ---- Dapper ----
 DefaultTypeMap.MatchNamesWithUnderscores = true;
+
+builder.Services.AddJwtAuth(builder.Configuration);
 
 // ---- Repositories ----
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
@@ -37,6 +40,20 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new() { Title = "Catalog Service API", Version = "v1" });
+    
+    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+    {
+        Name = "Authorization",
+        Type = SecuritySchemeType.Http,
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        In = ParameterLocation.Header,
+    });
+    
+    options.AddSecurityRequirement(document => new OpenApiSecurityRequirement
+    {
+        [new OpenApiSecuritySchemeReference("Bearer", document)] = []
+    });
 });
 
 var app = builder.Build();
@@ -50,6 +67,9 @@ using (var scope = app.Services.CreateScope())
 
 app.UseSwagger();
 app.UseSwaggerUI();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 // gRPC endpoint
 app.MapGrpcService<CatalogGrpcService>();

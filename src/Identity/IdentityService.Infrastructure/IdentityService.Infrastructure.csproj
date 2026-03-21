@@ -18,6 +18,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\Shared\Shared.Auth\Shared.Auth.csproj" />
       <ProjectReference Include="..\IdentityService.Application\IdentityService.Application.csproj" />
     </ItemGroup>
 

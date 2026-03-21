@@ -4,3 +4,9 @@
   "password": "Test123!"
 }
 
+
+
+{
+  "email": "admin@mail.qwerty",
+  "password": "admintest"
+}
