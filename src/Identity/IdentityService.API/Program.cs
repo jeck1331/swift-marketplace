@@ -4,13 +4,13 @@ using FluentMigrator.Runner;
 using IdentityService.API.Middleware;
 using IdentityService.Application;
 using IdentityService.Application.Services;
-using IdentityService.Infrastructure.Configuration;
 using IdentityService.Infrastructure.Migrations;
 using IdentityService.Infrastructure.Repositories;
 using IdentityService.Infrastructure.Serivces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi;
+using Shared.Auth.Configuration;
 using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);

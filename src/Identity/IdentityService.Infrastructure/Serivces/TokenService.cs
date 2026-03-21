@@ -4,9 +4,9 @@ using System.Security.Cryptography;
 using System.Text;
 using IdentityService.Application;
 using IdentityService.Domain.Entities;
-using IdentityService.Infrastructure.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Shared.Auth.Configuration;
 using StackExchange.Redis;
 
 namespace IdentityService.Infrastructure.Serivces;
@@ -32,7 +32,8 @@ public class TokenService : ITokenService
             new Claim(JwtRegisteredClaimNames.Email, user.Email),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             new Claim("firstName", user.FirstName),
-            new Claim("lastName", user.LastName)
+            new Claim("lastName", user.LastName),
+            new Claim(ClaimTypes.Role, user.Role)
         };
 
         var key = new SymmetricSecurityKey(

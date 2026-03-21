@@ -1,6 +1,7 @@
 ﻿using CatalogService.Application.DTOs.Category;
 using CatalogService.Application.Interfaces;
 using CatalogService.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CatalogService.API.Controllers;
@@ -35,6 +36,7 @@ public class CategoriesController : ControllerBase
             category.Description, category.ParentId));
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     public async Task<ActionResult<CategoryResponse>> Create(
         [FromBody] CreateCategoryRequest request, CancellationToken ct)
@@ -55,6 +57,7 @@ public class CategoriesController : ControllerBase
                 category.Description, category.ParentId));
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPut("{id:guid}")]
     public async Task<IActionResult> Update(
         Guid id, [FromBody] UpdateCategoryRequest request, CancellationToken ct)
@@ -69,6 +72,7 @@ public class CategoriesController : ControllerBase
         return NoContent();
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpDelete("{id:guid}")]
     public async Task<IActionResult> Delete(Guid id, CancellationToken ct)
     {

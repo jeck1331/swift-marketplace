@@ -3,6 +3,7 @@ using CatalogService.Application.DTOs.Search;
 using CatalogService.Application.DTOs.Stock;
 using CatalogService.Application.Interfaces;
 using CatalogService.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CatalogService.API.Controllers;
@@ -75,6 +76,7 @@ public class ProductsController: ControllerBase
         return Ok(new PagedResponse<ProductResponse>(items, totalCount, page, pageSize));
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     public async Task<ActionResult<ProductResponse>> Create(
         [FromBody] CreateProductRequest request, CancellationToken ct)
@@ -105,6 +107,7 @@ public class ProductsController: ControllerBase
             MapToResponse(product, stock));
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPut("{id:guid}")]
     public async Task<IActionResult> Update(
         Guid id, [FromBody] UpdateProductRequest request, CancellationToken ct)
@@ -125,6 +128,7 @@ public class ProductsController: ControllerBase
         return NoContent();
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpDelete("{id:guid}")]
     public async Task<IActionResult> Deactivate(Guid id, CancellationToken ct)
     {
@@ -133,6 +137,7 @@ public class ProductsController: ControllerBase
         return NoContent();
     }
 
+    [Authorize]
     [HttpGet("{id:guid}/stock")]
     public async Task<ActionResult<StockResponse>> GetStock(Guid id, CancellationToken ct)
     {
@@ -143,6 +148,7 @@ public class ProductsController: ControllerBase
             stock.Reserved, stock.Available));
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPut("{id:guid}/stock")]
     public async Task<IActionResult> SetStock(
         Guid id, [FromBody] SetStockRequest request, CancellationToken ct)
