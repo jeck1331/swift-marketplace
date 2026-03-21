@@ -14,6 +14,11 @@ public class CartController : ControllerBase
 {
     private readonly ICartRepository _cartRepo;
 
+    public CartController(ICartRepository cartRepo)
+    {
+        _cartRepo = cartRepo;
+    }
+
     [HttpGet]
     public async Task<ActionResult<IReadOnlyList<CartItemDto>>> GetCart(CancellationToken ct)
     {

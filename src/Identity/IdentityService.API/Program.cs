@@ -1,27 +1,24 @@
-using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using Dapper;
 using FluentMigrator.Runner;
 using IdentityService.API.Middleware;
 using IdentityService.Application;
 using IdentityService.Application.Services;
-using IdentityService.Domain.Entities;
 using IdentityService.Infrastructure.Configuration;
 using IdentityService.Infrastructure.Migrations;
 using IdentityService.Infrastructure.Repositories;
 using IdentityService.Infrastructure.Serivces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi;
 using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ── Dapper config ──
+// ---- Dapper config ----
 DefaultTypeMap.MatchNamesWithUnderscores = true;
 
-// ── JWT Settings ──
+// ---- JWT Settings ----
 builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("Jwt"));
 var jwtSettings = builder.Configuration
     .GetSection("Jwt").Get<JwtSettings>()!;
@@ -42,15 +39,14 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ClockSkew = TimeSpan.Zero // без допуска в 5 минут
         };
     });
-JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 builder.Services.AddAuthorization();
 
-// ── Redis ──
+// ---- Redis ----
 builder.Services.AddSingleton<IConnectionMultiplexer>(
     ConnectionMultiplexer.Connect(
         builder.Configuration.GetConnectionString("Redis")!));
 
-// ── Repositories ──
+// ---- Repositories ----
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IFavoriteRepository, FavoriteRepository>();
 //Без кэша
@@ -60,12 +56,12 @@ builder.Services.AddScoped<ICartRepository, CartRepository>();
 // builder.Services.AddScoped<CartRepository>();  // конкретный класс для инъекции в decorator
 // builder.Services.AddScoped<ICartRepository, CachedCartRepository>();
 
-// ── Services ──
+// ---- Services ----
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IPasswordHasher, BcryptPasswordHasher>();
 builder.Services.AddScoped<AuthService>();
 
-// ── FluentMigrator ──
+// ---- FluentMigrator ----
 builder.Services.AddFluentMigratorCore()
     .ConfigureRunner(rb => rb
         .AddPostgres()
@@ -74,7 +70,7 @@ builder.Services.AddFluentMigratorCore()
         .ScanIn(typeof(CreateUserTable).Assembly).For.Migrations())
     .AddLogging(lb => lb.AddFluentMigratorConsole());
 
-// ── Swagger + Controllers ──
+// ---- Swagger + Controllers ----
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
@@ -98,18 +94,18 @@ builder.Services.AddSwaggerGen(options =>
 
 var app = builder.Build();
 
-// ── Run migrations ──
+// ---- Run migrations ----
 using (var scope = app.Services.CreateScope())
 {
     var runner = scope.ServiceProvider.GetRequiredService<IMigrationRunner>();
     runner.MigrateUp();
 }
 
-// ── Middleware pipeline ──
+// ---- Middleware pipeline ----
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.UseMiddleware<ExceptionHandlingMiddleware>(); // до auth!
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseAuthentication();
 app.UseAuthorization();

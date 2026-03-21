@@ -1,0 +1,6 @@
+﻿LOGIN POST
+{
+  "email": "test@test.com",
+  "password": "Test123!"
+}
+

@@ -71,8 +71,20 @@
       - "9200:9200"
     volumes:
       - es_data:/usr/share/elasticsearch/data
+    
+  postgres-catalog:
+    image: postgres:18
+    environment:
+      POSTGRES_USER: marketplace
+      POSTGRES_PASSWORD: marketplace_pwd
+      POSTGRES_DB: catalog_db
+    ports:
+      - "5434:5432"
+    volumes:
+      - pg_catalog_data:/var/lib/postgresql
 
 volumes:
     pg_data:
+    pg_catalog_data:
     kafka_data:
     es_data:
