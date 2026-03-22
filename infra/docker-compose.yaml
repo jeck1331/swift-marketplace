@@ -83,8 +83,20 @@
     volumes:
       - pg_catalog_data:/var/lib/postgresql
 
+  postgres-orders:
+    image: postgres:18
+    environment:
+      POSTGRES_USER: marketplace
+      POSTGRES_PASSWORD: marketplace_pwd
+      POSTGRES_DB: orders_db
+    ports:
+      - "5435:5432"
+    volumes:
+      - pg_orders_data:/var/lib/postgresql
+  
 volumes:
     pg_data:
     pg_catalog_data:
+    pg_orders_data:
     kafka_data:
     es_data:

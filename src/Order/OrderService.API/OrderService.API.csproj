@@ -7,9 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Dapper" Version="2.1.72" />
+        <PackageReference Include="Confluent.Kafka" Version="2.13.2" />
         <PackageReference Include="Grpc.AspNetCore" Version="2.76.0" />
-        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.5" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.2"/>
         <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" Version="8.16.0" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="10.1.5" />
@@ -17,12 +16,8 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\Shared\Shared.Auth\Shared.Auth.csproj" />
-      <ProjectReference Include="..\CatalogService.Application\CatalogService.Application.csproj" />
-      <ProjectReference Include="..\CatalogService.Infrastructure\CatalogService.Infrastructure.csproj" />
-    </ItemGroup>
-    
-    <ItemGroup>
-        <Protobuf Include="Protos\catalog.proto" GrpcServices="Server" />
+      <ProjectReference Include="..\OrderService.Application\OrderService.Application.csproj" />
+      <ProjectReference Include="..\OrderService.Infrastructure\OrderService.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>
